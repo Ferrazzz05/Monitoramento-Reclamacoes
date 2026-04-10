@@ -45,6 +45,7 @@ _NEXT_DATA_PATTERN = re.compile(
 )
 _PENDING_STATUS = "PENDING"
 _MAX_RECURSION_DEPTH = 12
+_DEFAULT_TAB = "LAST"
 
 
 class ReclameAquiScraper:
@@ -213,7 +214,7 @@ class ReclameAquiScraper:
         if isinstance(node, dict):
             complaints_section = node.get("complaints")
             if isinstance(complaints_section, dict):
-                tab = complaints_section.get("tab")
+                tab = complaints_section.get("tab") or _DEFAULT_TAB
                 if isinstance(tab, str):
                     items = complaints_section.get(tab)
                     if isinstance(items, list):
